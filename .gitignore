@@ -1,0 +1,25 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+.gradle/
+.settings/
+.git/
+.vertx/
+build/
+gradle/
+.classpath
+.project
+gradlew
+gradlew.bat
+
+prompt.lnk
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*

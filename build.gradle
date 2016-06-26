@@ -1,0 +1,32 @@
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+mainClassName       = "io.vertx.core.Starter"
+
+def vertxVersion    = '3.3.0.CR1'
+def mainVerticle    = "jp.toastkid.wordcloud.WordCloudVerticle"
+
+ def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  compile "io.vertx:vertx-core:${vertxVersion}"
+  compile "io.vertx:vertx-web-templ-freemarker:${vertxVersion}"
+}
+
+run {
+  args = ["run", mainVerticle]
+}
+
+jar {
+  manifest {
+    attributes 'Main-Verticle': mainVerticle
+    attributes 'Main-Class'   : mainClassName
+  }
+  destinationDir = projectDir
+  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
